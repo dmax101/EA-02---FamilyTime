@@ -1,7 +1,5 @@
 MATCH (n) DETACH DELETE n;
-
 CREATE(:Person:Aposentado{nome: 'Nilo Ramos Ribeiro', sexo: 'M', idade: 65}),(:Person:Aposentado{nome: 'Ivani Vidal Ribeiro', sexo: 'F', idade: 55}),(:Person:Engenheiro{nome: 'Danilo Vidal Ribeiro', sexo: 'M', idade: 32}),(:Person:Artista{nome: 'Michele Vidal Ribeiro', sexo: 'F', idade: 30}),(:Person:Administrativo{nome: 'Allan Patrick Ribeiro', sexo: 'M', idade: 27}),(:Person:Estudante{nome: 'Sofia Ribeiro', sexo: 'F', idade: 7}),(:Person:Escrituraria{nome: 'Flavia Ribeiro', sexo: 'F', idade: 37}),(:Pet:Gato{nome: 'Gandalf', sexo: 'M', idade: 14}),(:Pet:Cachorro{nome: 'Duque', sexo: 'M', idade: 2}),(:Pet:Cachorro{nome: 'Buzz', sexo: 'M', idade: 3});
-
 MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P2:Person{nome: 'Ivani Vidal Ribeiro'}) CREATE (P1)-[:CASADO_COM{tempo: 32}]->(P2);
 MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P3:Person{nome: 'Danilo Vidal Ribeiro'}) CREATE (P1)-[:PAI_DE]->(P3);
 MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P4:Person{nome: 'Michele Vidal Ribeiro'}) CREATE (P1)-[:PAI_DE]->(P4);
