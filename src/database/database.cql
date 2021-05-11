@@ -1,0 +1,32 @@
+MATCH (n) DETACH DELETE n;
+
+CREATE(:Person:Aposentado{nome: 'Nilo Ramos Ribeiro', sexo: 'M', idade: 65}),(:Person:Aposentado{nome: 'Ivani Vidal Ribeiro', sexo: 'F', idade: 55}),(:Person:Engenheiro{nome: 'Danilo Vidal Ribeiro', sexo: 'M', idade: 32}),(:Person:Artista{nome: 'Michele Vidal Ribeiro', sexo: 'F', idade: 30}),(:Person:Administrativo{nome: 'Allan Patrick Ribeiro', sexo: 'M', idade: 27}),(:Person:Estudante{nome: 'Sofia Ribeiro', sexo: 'F', idade: 7}),(:Person:Escrituraria{nome: 'Flavia Ribeiro', sexo: 'F', idade: 37}),(:Pet:Gato{nome: 'Gandalf', sexo: 'M', idade: 14}),(:Pet:Cachorro{nome: 'Duque', sexo: 'M', idade: 2}),(:Pet:Cachorro{nome: 'Buzz', sexo: 'M', idade: 3});
+
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P2:Person{nome: 'Ivani Vidal Ribeiro'}) CREATE (P1)-[:CASADO_COM{tempo: 32}]->(P2);
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P3:Person{nome: 'Danilo Vidal Ribeiro'}) CREATE (P1)-[:PAI_DE]->(P3);
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P4:Person{nome: 'Michele Vidal Ribeiro'}) CREATE (P1)-[:PAI_DE]->(P4);
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P5:Person{nome: 'Allan Patrick Ribeiro'}) CREATE (P1)-[:PAI_DE]->(P5);
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P6:Person{nome: 'Sofia Ribeiro'}) CREATE (P1)-[:AVO_DE]->(P6);
+MATCH (P1:Person{nome: 'Nilo Ramos Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P1)-[:SOGRO_DE]->(P7);
+MATCH (P2:Person{nome: 'Ivani Vidal Ribeiro'}), (P3:Person{nome: 'Danilo Vidal Ribeiro'}) CREATE (P2)-[:PAI_DE]->(P3);
+MATCH (P2:Person{nome: 'Ivani Vidal Ribeiro'}), (P4:Person{nome: 'Michele Vidal Ribeiro'}) CREATE (P2)-[:PAI_DE]->(P4);
+MATCH (P2:Person{nome: 'Ivani Vidal Ribeiro'}), (P5:Person{nome: 'Allan Patrick Ribeiro'}) CREATE (P2)-[:PAI_DE]->(P5);
+MATCH (P2:Person{nome: 'Ivani Vidal Ribeiro'}), (P6:Person{nome: 'Sofia Ribeiro'}) CREATE (P2)-[:AVO_DE]->(P6);
+MATCH (P2:Person{nome: 'Ivani Vidal Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P2)-[:SOGRO_DE]->(P7);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P4:Person{nome: 'Michele Vidal Ribeiro'}) CREATE (P3)-[:IRMAO_DE]->(P4);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P5:Person{nome: 'Allan Patrick Ribeiro'}) CREATE (P3)-[:IRMAO_DE]->(P5);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P6:Person{nome: 'Sofia Ribeiro'}) CREATE (P3)-[:PAI_DE]->(P6);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P3)-[:CASADO_COM{tempo: 11}]->(P7);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P8:Pet{nome: 'Gandalf'}) CREATE (P3)-[:DONO_DO]->(P8);
+MATCH (P3:Person{nome: 'Danilo Vidal Ribeiro'}), (P9:Pet{nome: 'Duque'}) CREATE (P3)-[:DONO_DO]->(P9);
+MATCH (P4:Person{nome: 'Michele Vidal Ribeiro'}), (P5:Person{nome: 'Allan Patrick Ribeiro'}) CREATE (P4)-[:IRMAO_DE]->(P5);
+MATCH (P4:Person{nome: 'Michele Vidal Ribeiro'}), (P6:Person{nome: 'Sofia Ribeiro'}) CREATE (P4)-[:TIO_DE]->(P6);
+MATCH (P4:Person{nome: 'Michele Vidal Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P4)-[:CUNHADO_DE]->(P7);
+MATCH (P4:Person{nome: 'Michele Vidal Ribeiro'}), (P10:Pet{nome: 'Buzz'}) CREATE (P4)-[:DONO_DO]->(P10);
+MATCH (P5:Person{nome: 'Allan Patrick Ribeiro'}), (P6:Person{nome: 'Sofia Ribeiro'}) CREATE (P5)-[:TIO_DE]->(P6);
+MATCH (P5:Person{nome: 'Allan Patrick Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P5)-[:CUNHADO_DE]->(P7);
+MATCH (P6:Person{nome: 'Sofia Ribeiro'}), (P7:Person{nome: 'Flavia Ribeiro'}) CREATE (P6)-[:FILHO_DE]->(P7);
+MATCH (P6:Person{nome: 'Sofia Ribeiro'}), (P8:Pet{nome: 'Gandalf'}) CREATE (P6)-[:DONO_DO]->(P8);
+MATCH (P6:Person{nome: 'Sofia Ribeiro'}), (P9:Pet{nome: 'Duque'}) CREATE (P6)-[:DONO_DO]->(P9);
+MATCH (P7:Person{nome: 'Flavia Ribeiro'}), (P8:Pet{nome: 'Gandalf'}) CREATE (P7)-[:DONO_DO]->(P8);
+MATCH (P8:Pet{nome: 'Gandalf'}), (P9:Pet{nome: 'Duque'}) CREATE (P8)-[:AMIGO_DE]->(P9);
